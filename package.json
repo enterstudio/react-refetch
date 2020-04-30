@@ -7,10 +7,11 @@
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib dist coverage",
     "lint": "eslint src test",
-    "prepublish": "npm run clean && npm run lint && npm run build",
+    "prepublish": "npm run snyk-protect && npm run clean && npm run lint && npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive --require ./test/setup.js",
     "test:watch": "npm test -- --watch",
-    "test:cov": "babel-node ./node_modules/isparta/bin/isparta cover ./node_modules/mocha/bin/_mocha -- --recursive --require ./test/setup.js"
+    "test:cov": "babel-node ./node_modules/isparta/bin/isparta cover ./node_modules/mocha/bin/_mocha -- --recursive --require ./test/setup.js",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -65,9 +66,11 @@
     "hoist-non-react-statics": "^1.0.3",
     "invariant": "^2.0.0",
     "lodash": "^4.11.0",
-    "warning": "^2.1.0"
+    "warning": "^2.1.0",
+    "snyk": "^1.316.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0"
-  }
+  },
+  "snyk": true
 }
